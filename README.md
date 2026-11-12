@@ -1,17 +1,33 @@
-# wisata_sumut
+﻿# Wisata Sumatera Utara
 
-A new Flutter project.
+Aplikasi Flutter multi-layar untuk menjelajahi destinasi wisata di Sumatera Utara. Tampilan menggunakan Material 3, ikon ilustratif tanpa gambar jaringan, dan navigasi dua bagian: Destinasi serta Tentang.
 
-## Getting Started
+## Identitas
 
-This project is a starting point for a Flutter application.
+- Nama: [Isi nama]
+- NIM: [Isi NIM]
+- Kelas: [Isi kelas]
 
-A few resources to get you started if this is your first Flutter project:
+## Tangkapan layar
 
-- [Learn Flutter](https://docs.flutter.dev/get-started/learn-flutter)
-- [Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Flutter learning resources](https://docs.flutter.dev/reference/learning-resources)
+Ganti placeholder berikut dengan gambar hasil aplikasi:
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+1. Daftar destinasi di ponsel: `![Daftar destinasi - ponsel](screenshots/daftar-ponsel.png)`
+2. Detail destinasi di ponsel: `![Detail destinasi - ponsel](screenshots/detail-ponsel.png)`
+3. Daftar destinasi di tablet: `![Daftar destinasi - tablet](screenshots/daftar-tablet.png)`
+4. Detail destinasi di tablet: `![Detail destinasi - tablet](screenshots/detail-tablet.png)`
+
+## Keputusan desain responsif
+
+Tampilan daftar memakai `LayoutBuilder` untuk menentukan jumlah kolom berdasarkan lebar ruang yang benar-benar tersedia. Pada lebar di bawah 600 dp, kartu disusun dalam dua kolom agar tetap nyaman disentuh pada ponsel. Lebar 600 sampai kurang dari 900 dp menggunakan tiga kolom, sementara ruang 900 dp atau lebih memakai empat kolom. Halaman detail memiliki keputusan lokal pada 700 dp: di bawah batas itu visual dan informasi tersusun vertikal agar alur baca tetap alami; mulai 700 dp keduanya ditampilkan berdampingan, dengan informasi yang dapat digulir sendiri. Kerangka aplikasi menggunakan `MediaQuery.sizeOf(context)` untuk keputusan tingkat aplikasi pada 840 dp. Di bawahnya navigasi berada di bagian bawah, sesuai pola ponsel dan tablet sempit. Mulai 840 dp, navigasi berpindah ke rail di sisi layar sehingga area konten utama tetap luas. `LayoutBuilder` cocok untuk grid dan detail karena komponennya perlu merespons batas lokal, termasuk saat berada di dalam panel. `MediaQuery` dipakai pada kerangka karena pemilihan navigasi mengikuti ukuran keseluruhan jendela. Teks nama dan lokasi dibatasi baris serta memakai ellipsis, sedangkan deskripsi panjang dapat digulir agar tidak meluap.
+
+## Pernyataan penggunaan AI
+
+AI digunakan sebagai alat bantu untuk menyusun struktur widget, data contoh destinasi, dokumentasi, dan pengujian. Kode dan hasilnya ditinjau serta diverifikasi kembali dengan `flutter analyze` dan `flutter test`.
+
+## Menjalankan aplikasi
+
+```sh
+flutter pub get
+flutter run
+```

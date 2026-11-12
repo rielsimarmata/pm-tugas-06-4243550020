@@ -44,7 +44,7 @@ class HalamanDaftar extends StatelessWidget {
                     crossAxisCount: jumlahKolom,
                     crossAxisSpacing: 14,
                     mainAxisSpacing: 14,
-                    childAspectRatio: batas.maxWidth < 600 ? 0.82 : 0.9,
+                    childAspectRatio: batas.maxWidth < 600 ? 0.68 : 0.9,
                   ),
                   itemCount: daftarDestinasi.length,
                   itemBuilder: (context, indeks) => KartuDestinasi(
@@ -155,3 +155,4 @@ class DestinasiVisual extends StatelessWidget {
     );
   }
 }
+
