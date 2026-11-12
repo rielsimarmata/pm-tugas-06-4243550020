@@ -1,10 +1,15 @@
-﻿import 'package:material_ui/material_ui.dart';
+import 'package:material_ui/material_ui.dart';
 
 import 'data.dart';
 import 'halaman_daftar.dart';
 
+/// Menampilkan informasi destinasi dengan susunan adaptif.
 class HalamanDetail extends StatelessWidget {
-  const HalamanDetail({super.key, required this.destinasi, required this.kembali});
+  const HalamanDetail({
+    super.key,
+    required this.destinasi,
+    required this.kembali,
+  });
 
   final Destinasi destinasi;
   final VoidCallback kembali;
@@ -14,7 +19,11 @@ class HalamanDetail extends StatelessWidget {
     final tema = Theme.of(context);
     return Scaffold(
       appBar: AppBar(
-        leading: IconButton(tooltip: 'Kembali', onPressed: kembali, icon: const Icon(Icons.arrow_back)),
+        leading: IconButton(
+          tooltip: 'Kembali',
+          onPressed: kembali,
+          icon: const Icon(Icons.arrow_back),
+        ),
         title: const Text('Detail destinasi'),
       ),
       body: LayoutBuilder(
@@ -25,19 +34,37 @@ class HalamanDetail extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text(destinasi.nama, style: tema.textTheme.headlineMedium?.copyWith(fontWeight: FontWeight.bold)),
+                Text(
+                  destinasi.nama,
+                  style: tema.textTheme.headlineMedium?.copyWith(
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
                 const SizedBox(height: 12),
                 Row(
                   children: [
                     const Icon(Icons.location_on_outlined),
                     const SizedBox(width: 8),
-                    Expanded(child: Text(destinasi.kabupatenKota, style: tema.textTheme.titleMedium)),
+                    Expanded(
+                      child: Text(
+                        destinasi.kabupatenKota,
+                        style: tema.textTheme.titleMedium,
+                      ),
+                    ),
                   ],
                 ),
                 const SizedBox(height: 24),
-                Text('Tentang destinasi', style: tema.textTheme.titleLarge?.copyWith(fontWeight: FontWeight.bold)),
+                Text(
+                  'Tentang destinasi',
+                  style: tema.textTheme.titleLarge?.copyWith(
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
                 const SizedBox(height: 8),
-                Text(destinasi.deskripsi, style: tema.textTheme.bodyLarge?.copyWith(height: 1.6)),
+                Text(
+                  destinasi.deskripsi,
+                  style: tema.textTheme.bodyLarge?.copyWith(height: 1.6),
+                ),
                 const SizedBox(height: 24),
                 Card(
                   color: tema.colorScheme.secondaryContainer,
@@ -45,20 +72,37 @@ class HalamanDetail extends StatelessWidget {
                     padding: const EdgeInsets.all(16),
                     child: Row(
                       children: [
-                        Icon(Icons.confirmation_number_outlined, color: tema.colorScheme.onSecondaryContainer),
+                        Icon(
+                          Icons.confirmation_number_outlined,
+                          color: tema.colorScheme.onSecondaryContainer,
+                        ),
                         const SizedBox(width: 12),
-                        Expanded(child: Text('Harga tiket', style: tema.textTheme.titleMedium)),
-                        Text(formatHargaTiket(destinasi.hargaTiket), style: tema.textTheme.titleMedium?.copyWith(fontWeight: FontWeight.bold)),
+                        Expanded(
+                          child: Text(
+                            'Harga tiket',
+                            style: tema.textTheme.titleMedium,
+                          ),
+                        ),
+                        Text(
+                          formatHargaTiket(destinasi.hargaTiket),
+                          style: tema.textTheme.titleMedium?.copyWith(
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
                       ],
                     ),
                   ),
                 ),
                 const SizedBox(height: 12),
-                Text('Harga dapat berubah sesuai kebijakan pengelola.', style: tema.textTheme.bodySmall),
+                Text(
+                  'Harga dapat berubah sesuai kebijakan pengelola.',
+                  style: tema.textTheme.bodySmall,
+                ),
               ],
             ),
           );
 
+          // Mulai 700 dp, visual dan informasi dapat tampil berdampingan.
           if (batas.maxWidth >= 700) {
             return Padding(
               padding: const EdgeInsets.all(24),
@@ -85,6 +129,7 @@ class HalamanDetail extends StatelessWidget {
   }
 }
 
+/// Memberi pesan dan jalan kembali saat ID destinasi tidak dikenal.
 class HalamanTidakDitemukan extends StatelessWidget {
   const HalamanTidakDitemukan({super.key, required this.kembali});
 
@@ -101,9 +146,17 @@ class HalamanTidakDitemukan extends StatelessWidget {
           children: [
             const Icon(Icons.search_off, size: 64),
             const SizedBox(height: 16),
-            Text('Destinasi tidak ditemukan', textAlign: TextAlign.center, style: Theme.of(context).textTheme.headlineSmall),
+            Text(
+              'Destinasi tidak ditemukan',
+              textAlign: TextAlign.center,
+              style: Theme.of(context).textTheme.headlineSmall,
+            ),
             const SizedBox(height: 16),
-            FilledButton.icon(onPressed: kembali, icon: const Icon(Icons.arrow_back), label: const Text('Kembali')),
+            FilledButton.icon(
+              onPressed: kembali,
+              icon: const Icon(Icons.arrow_back),
+              label: const Text('Kembali'),
+            ),
           ],
         ),
       ),

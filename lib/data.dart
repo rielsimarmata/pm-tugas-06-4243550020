@@ -1,5 +1,6 @@
-﻿import 'package:material_ui/material_ui.dart';
+import 'package:material_ui/material_ui.dart';
 
+/// Model ringkas untuk informasi satu destinasi wisata.
 class Destinasi {
   const Destinasi({
     required this.id,
@@ -85,13 +86,15 @@ const daftarDestinasi = <Destinasi>[
   ),
 ];
 
-Destinasi? cariDestinasi(int id) => switch (
-  daftarDestinasi.where((destinasi) => destinasi.id == id).toList()
-) {
-  [final destinasi, ...] => destinasi,
-  _ => null,
-};
+/// Mencari destinasi berdasarkan ID, atau null jika tidak ditemukan.
+Destinasi? cariDestinasi(int id) {
+  for (final destinasi in daftarDestinasi) {
+    if (destinasi.id == id) return destinasi;
+  }
+  return null;
+}
 
+/// Menambahkan pemisah ribuan dengan format rupiah sederhana.
 extension FormatRupiah on int {
   String get formatRupiah {
     final teks = toString();
@@ -104,4 +107,5 @@ extension FormatRupiah on int {
   }
 }
 
-String formatHargaTiket(int? harga) => harga == null ? 'Gratis' : harga.formatRupiah;
+String formatHargaTiket(int? harga) =>
+    harga == null ? 'Gratis' : harga.formatRupiah;

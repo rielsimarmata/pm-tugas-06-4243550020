@@ -1,7 +1,8 @@
-﻿import 'package:material_ui/material_ui.dart';
+import 'package:material_ui/material_ui.dart';
 
 import 'data.dart';
 
+/// Menampilkan semua destinasi dalam grid yang menyesuaikan lebar layar.
 class HalamanDaftar extends StatelessWidget {
   const HalamanDaftar({super.key, required this.bukaDestinasi});
 
@@ -17,6 +18,7 @@ class HalamanDaftar extends StatelessWidget {
       ),
       body: LayoutBuilder(
         builder: (context, batas) {
+          // Batas 600 dp menjaga kartu tetap nyaman; 900 dp menambah kolom keempat.
           final jumlahKolom = switch (batas.maxWidth) {
             < 600 => 2,
             < 900 => 3,
@@ -30,9 +32,17 @@ class HalamanDaftar extends StatelessWidget {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Text('Jelajahi keindahan Sumut', style: tema.textTheme.headlineSmall?.copyWith(fontWeight: FontWeight.bold)),
+                      Text(
+                        'Jelajahi keindahan Sumut',
+                        style: tema.textTheme.headlineSmall?.copyWith(
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
                       const SizedBox(height: 6),
-                      Text('Temukan alam, budaya, dan cerita dari setiap sudut Sumatera Utara.', style: tema.textTheme.bodyMedium),
+                      Text(
+                        'Temukan alam, budaya, dan cerita dari setiap sudut Sumatera Utara.',
+                        style: tema.textTheme.bodyMedium,
+                      ),
                     ],
                   ),
                 ),
@@ -44,6 +54,10 @@ class HalamanDaftar extends StatelessWidget {
                     crossAxisCount: jumlahKolom,
                     crossAxisSpacing: 14,
                     mainAxisSpacing: 14,
+                    mainAxisExtent:
+                        batas.maxWidth >= 600 && batas.maxWidth < 900
+                        ? 280
+                        : null,
                     childAspectRatio: batas.maxWidth < 600 ? 0.68 : 0.9,
                   ),
                   itemCount: daftarDestinasi.length,
@@ -61,8 +75,13 @@ class HalamanDaftar extends StatelessWidget {
   }
 }
 
+/// Kartu destinasi yang dapat diketuk untuk membuka halaman detail.
 class KartuDestinasi extends StatelessWidget {
-  const KartuDestinasi({super.key, required this.destinasi, required this.onTap});
+  const KartuDestinasi({
+    super.key,
+    required this.destinasi,
+    required this.onTap,
+  });
 
   final Destinasi destinasi;
   final VoidCallback onTap;
@@ -80,7 +99,10 @@ class KartuDestinasi extends StatelessWidget {
           children: [
             Expanded(
               flex: 5,
-              child: DestinasiVisual(destinasi: destinasi, radius: BorderRadius.zero),
+              child: DestinasiVisual(
+                destinasi: destinasi,
+                radius: BorderRadius.zero,
+              ),
             ),
             Expanded(
               flex: 4,
@@ -93,16 +115,40 @@ class KartuDestinasi extends StatelessWidget {
                     Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        Text(destinasi.nama, maxLines: 1, overflow: TextOverflow.ellipsis, style: tema.textTheme.titleMedium?.copyWith(fontWeight: FontWeight.bold)),
+                        Text(
+                          destinasi.nama,
+                          maxLines: 1,
+                          overflow: TextOverflow.ellipsis,
+                          style: tema.textTheme.titleMedium?.copyWith(
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
                         const SizedBox(height: 4),
-                        Text(destinasi.kabupatenKota, maxLines: 1, overflow: TextOverflow.ellipsis, style: tema.textTheme.bodySmall),
+                        Text(
+                          destinasi.kabupatenKota,
+                          maxLines: 1,
+                          overflow: TextOverflow.ellipsis,
+                          style: tema.textTheme.bodySmall,
+                        ),
                       ],
                     ),
                     Row(
                       children: [
-                        const Icon(Icons.confirmation_number_outlined, size: 17),
+                        const Icon(
+                          Icons.confirmation_number_outlined,
+                          size: 17,
+                        ),
                         const SizedBox(width: 5),
-                        Expanded(child: Text(formatHargaTiket(destinasi.hargaTiket), maxLines: 1, overflow: TextOverflow.ellipsis, style: tema.textTheme.labelLarge?.copyWith(fontWeight: FontWeight.w600))),
+                        Expanded(
+                          child: Text(
+                            formatHargaTiket(destinasi.hargaTiket),
+                            maxLines: 1,
+                            overflow: TextOverflow.ellipsis,
+                            style: tema.textTheme.labelLarge?.copyWith(
+                              fontWeight: FontWeight.w600,
+                            ),
+                          ),
+                        ),
                         const Icon(Icons.arrow_forward, size: 18),
                       ],
                     ),
@@ -117,8 +163,13 @@ class KartuDestinasi extends StatelessWidget {
   }
 }
 
+/// Ilustrasi lokal destinasi dengan label kategori di atasnya.
 class DestinasiVisual extends StatelessWidget {
-  const DestinasiVisual({super.key, required this.destinasi, this.radius = const BorderRadius.all(Radius.circular(24))});
+  const DestinasiVisual({
+    super.key,
+    required this.destinasi,
+    this.radius = const BorderRadius.all(Radius.circular(24)),
+  });
 
   final Destinasi destinasi;
   final BorderRadius radius;
@@ -135,10 +186,19 @@ class DestinasiVisual extends StatelessWidget {
               gradient: LinearGradient(
                 begin: Alignment.topLeft,
                 end: Alignment.bottomRight,
-                colors: [destinasi.warna, destinasi.warna.withValues(alpha: 0.55)],
+                colors: [
+                  destinasi.warna,
+                  destinasi.warna.withValues(alpha: 0.55),
+                ],
               ),
             ),
-            child: Center(child: Icon(destinasi.ikon, size: 76, color: Colors.white.withValues(alpha: 0.9))),
+            child: Center(
+              child: Icon(
+                destinasi.ikon,
+                size: 76,
+                color: Colors.white.withValues(alpha: 0.9),
+              ),
+            ),
           ),
           Positioned(
             top: 12,
@@ -146,8 +206,19 @@ class DestinasiVisual extends StatelessWidget {
             child: Container(
               constraints: const BoxConstraints(maxWidth: 160),
               padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 6),
-              decoration: BoxDecoration(color: Colors.black.withValues(alpha: 0.48), borderRadius: BorderRadius.circular(30)),
-              child: Text(destinasi.kategori, maxLines: 1, overflow: TextOverflow.ellipsis, style: Theme.of(context).textTheme.labelMedium?.copyWith(color: Colors.white, fontWeight: FontWeight.w600)),
+              decoration: BoxDecoration(
+                color: Colors.black.withValues(alpha: 0.48),
+                borderRadius: BorderRadius.circular(30),
+              ),
+              child: Text(
+                destinasi.kategori,
+                maxLines: 1,
+                overflow: TextOverflow.ellipsis,
+                style: Theme.of(context).textTheme.labelMedium?.copyWith(
+                  color: Colors.white,
+                  fontWeight: FontWeight.w600,
+                ),
+              ),
             ),
           ),
         ],
@@ -155,4 +226,3 @@ class DestinasiVisual extends StatelessWidget {
     );
   }
 }
-

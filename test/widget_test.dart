@@ -1,7 +1,8 @@
-﻿import 'dart:ui' show Size;
+import 'dart:ui' show Size;
 
 import 'package:flutter_test/flutter_test.dart';
 import 'package:wisata_sumut/main.dart';
+
 void main() {
   testWidgets('daftar membuka detail dan menampilkan kategori', (tester) async {
     await tester.pumpWidget(const AplikasiWisata());
@@ -14,7 +15,9 @@ void main() {
     expect(find.text('Alam'), findsOneWidget);
   });
 
-  testWidgets('ID yang tidak dikenal menampilkan halaman tidak ditemukan', (tester) async {
+  testWidgets('ID yang tidak dikenal menampilkan halaman tidak ditemukan', (
+    tester,
+  ) async {
     await tester.pumpWidget(const AplikasiWisata());
     appRouter.go('/destinasi/99999');
     await tester.pumpAndSettle();
@@ -22,25 +25,28 @@ void main() {
     expect(find.text('Destinasi tidak ditemukan'), findsOneWidget);
   });
 
-  for (final ukuran in <Size>[
-    const Size(360, 800),
-    const Size(800, 1280),
-    const Size(1280, 800),
-  ]) {
-    testWidgets('tidak overflow pada ${ukuran.width.toInt()}x${ukuran.height.toInt()}', (tester) async {
-      tester.view.physicalSize = ukuran;
-      tester.view.devicePixelRatio = 1;
-      addTearDown(tester.view.resetPhysicalSize);
-      addTearDown(tester.view.resetDevicePixelRatio);
+  for (final lebar in <double>[600, 640, 700, 720, 840, 900]) {
+    for (final skalaTeks in <double>[1, 1.3]) {
+      testWidgets(
+        'daftar dan detail tidak overflow pada lebar ${lebar.toInt()} dp dengan skala $skalaTeks',
+        (tester) async {
+          tester.view.physicalSize = Size(lebar, 900);
+          tester.view.devicePixelRatio = 1;
+          tester.platformDispatcher.textScaleFactorTestValue = skalaTeks;
+          addTearDown(tester.view.resetPhysicalSize);
+          addTearDown(tester.view.resetDevicePixelRatio);
+          addTearDown(tester.platformDispatcher.clearTextScaleFactorTestValue);
 
-      await tester.pumpWidget(const AplikasiWisata());
-      appRouter.go('/');
-      await tester.pumpAndSettle();
-      expect(tester.takeException(), isNull);
+          await tester.pumpWidget(const AplikasiWisata());
+          appRouter.go('/');
+          await tester.pumpAndSettle();
+          expect(tester.takeException(), isNull, reason: 'Halaman daftar');
 
-      await tester.tap(find.text('Danau Toba').first);
-      await tester.pumpAndSettle();
-      expect(tester.takeException(), isNull);
-    });
+          await tester.tap(find.text('Danau Toba').first);
+          await tester.pumpAndSettle();
+          expect(tester.takeException(), isNull, reason: 'Halaman detail');
+        },
+      );
+    }
   }
 }

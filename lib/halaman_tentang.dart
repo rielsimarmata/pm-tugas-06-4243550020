@@ -1,5 +1,6 @@
-﻿import 'package:material_ui/material_ui.dart';
+import 'package:material_ui/material_ui.dart';
 
+/// Menampilkan informasi aplikasi dan identitas pengembang.
 class HalamanTentang extends StatelessWidget {
   const HalamanTentang({super.key});
 
@@ -18,12 +19,25 @@ class HalamanTentang extends StatelessWidget {
                 height: 190,
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(28),
-                  gradient: const LinearGradient(colors: [Color(0xFF00695C), Color(0xFF80CBC4)]),
+                  gradient: const LinearGradient(
+                    colors: [Color(0xFF00695C), Color(0xFF80CBC4)],
+                  ),
                 ),
-                child: const Center(child: Icon(Icons.travel_explore, size: 88, color: Colors.white)),
+                child: const Center(
+                  child: Icon(
+                    Icons.travel_explore,
+                    size: 88,
+                    color: Colors.white,
+                  ),
+                ),
               ),
               const SizedBox(height: 24),
-              Text('Wisata Sumatera Utara', style: tema.textTheme.headlineMedium?.copyWith(fontWeight: FontWeight.bold)),
+              Text(
+                'Wisata Sumatera Utara',
+                style: tema.textTheme.headlineMedium?.copyWith(
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
               const SizedBox(height: 12),
               Text(
                 'Aplikasi pengenalan destinasi wisata Sumatera Utara. Jelajahi pilihan wisata alam, budaya, sejarah, dan pesisir melalui kartu informasi yang mudah dibaca di berbagai ukuran layar.',
@@ -46,7 +60,10 @@ class HalamanTentang extends StatelessWidget {
                 ),
               ),
               const SizedBox(height: 12),
-              Text('Dibuat untuk tugas Pemrograman Mobile.', style: tema.textTheme.bodyMedium),
+              Text(
+                'Dibuat untuk tugas Pemrograman Mobile.',
+                style: tema.textTheme.bodyMedium,
+              ),
             ],
           ),
         ),

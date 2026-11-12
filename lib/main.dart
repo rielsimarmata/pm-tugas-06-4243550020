@@ -1,4 +1,4 @@
-﻿import 'package:material_ui/material_ui.dart';
+import 'package:material_ui/material_ui.dart';
 import 'package:go_router/go_router.dart';
 
 import 'data.dart';
@@ -17,7 +17,8 @@ final appRouter = GoRouter(
             GoRoute(
               path: '/',
               builder: (context, state) => HalamanDaftar(
-                bukaDestinasi: (destinasi) => context.go('/destinasi/${destinasi.id}'),
+                bukaDestinasi: (destinasi) =>
+                    context.go('/destinasi/${destinasi.id}'),
               ),
               routes: [
                 GoRoute(
@@ -27,7 +28,10 @@ final appRouter = GoRouter(
                     final destinasi = id == null ? null : cariDestinasi(id);
                     return destinasi == null
                         ? HalamanTidakDitemukan(kembali: () => context.go('/'))
-                        : HalamanDetail(destinasi: destinasi, kembali: () => context.go('/'));
+                        : HalamanDetail(
+                            destinasi: destinasi,
+                            kembali: () => context.go('/'),
+                          );
                   },
                 ),
               ],
@@ -35,7 +39,12 @@ final appRouter = GoRouter(
           ],
         ),
         StatefulShellBranch(
-          routes: [GoRoute(path: '/tentang', builder: (context, state) => const HalamanTentang())],
+          routes: [
+            GoRoute(
+              path: '/tentang',
+              builder: (context, state) => const HalamanTentang(),
+            ),
+          ],
         ),
       ],
     ),
@@ -44,6 +53,7 @@ final appRouter = GoRouter(
 
 void main() => runApp(const AplikasiWisata());
 
+/// Mengatur tema Material 3 dan konfigurasi router aplikasi.
 class AplikasiWisata extends StatelessWidget {
   const AplikasiWisata({super.key});
 
@@ -55,35 +65,53 @@ class AplikasiWisata extends StatelessWidget {
       useMaterial3: true,
       colorScheme: ColorScheme.fromSeed(seedColor: const Color(0xFF00695C)),
       scaffoldBackgroundColor: const Color(0xFFF7F8F5),
-      cardTheme: CardThemeData(elevation: 1, shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20))),
+      cardTheme: CardThemeData(
+        elevation: 1,
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
+      ),
     ),
     routerConfig: appRouter,
   );
 }
 
+/// Menyesuaikan navigasi utama dengan ukuran jendela.
 class KerangkaNavigasi extends StatelessWidget {
   const KerangkaNavigasi({super.key, required this.shell});
 
   final StatefulNavigationShell shell;
 
   static const _tujuan = <_TujuanNavigasi>[
-    _TujuanNavigasi(label: 'Destinasi', ikon: Icons.explore_outlined, ikonAktif: Icons.explore),
-    _TujuanNavigasi(label: 'Tentang', ikon: Icons.info_outline, ikonAktif: Icons.info),
+    _TujuanNavigasi(
+      label: 'Destinasi',
+      ikon: Icons.explore_outlined,
+      ikonAktif: Icons.explore,
+    ),
+    _TujuanNavigasi(
+      label: 'Tentang',
+      ikon: Icons.info_outline,
+      ikonAktif: Icons.info,
+    ),
   ];
 
   @override
   Widget build(BuildContext context) {
     final lebar = MediaQuery.sizeOf(context).width;
     final indeksAktif = shell.currentIndex;
+    // Batas 840 dp memilih navigasi bawah atau rail tingkat aplikasi.
     if (lebar < 840) {
       return Scaffold(
         body: shell,
         bottomNavigationBar: NavigationBar(
           selectedIndex: indeksAktif,
-          onDestinationSelected: (indeks) => shell.goBranch(indeks, initialLocation: indeks == indeksAktif),
+          onDestinationSelected: (indeks) =>
+              shell.goBranch(indeks, initialLocation: indeks == indeksAktif),
           destinations: [
             for (final tujuan in _tujuan)
-              NavigationDestination(icon: Icon(tujuan.ikon), selectedIcon: Icon(tujuan.ikonAktif), label: tujuan.label),
+              NavigationDestination(
+                icon: Icon(tujuan.ikon),
+                selectedIcon: Icon(tujuan.ikonAktif),
+                label: tujuan.label,
+              ),
           ],
         ),
       );
@@ -93,11 +121,16 @@ class KerangkaNavigasi extends StatelessWidget {
         children: [
           NavigationRail(
             selectedIndex: indeksAktif,
-            onDestinationSelected: (indeks) => shell.goBranch(indeks, initialLocation: indeks == indeksAktif),
+            onDestinationSelected: (indeks) =>
+                shell.goBranch(indeks, initialLocation: indeks == indeksAktif),
             labelType: NavigationRailLabelType.all,
             destinations: [
               for (final tujuan in _tujuan)
-                NavigationRailDestination(icon: Icon(tujuan.ikon), selectedIcon: Icon(tujuan.ikonAktif), label: Text(tujuan.label)),
+                NavigationRailDestination(
+                  icon: Icon(tujuan.ikon),
+                  selectedIcon: Icon(tujuan.ikonAktif),
+                  label: Text(tujuan.label),
+                ),
             ],
           ),
           const VerticalDivider(width: 1),
@@ -108,8 +141,13 @@ class KerangkaNavigasi extends StatelessWidget {
   }
 }
 
+/// Menyimpan label dan ikon untuk satu tujuan navigasi.
 class _TujuanNavigasi {
-  const _TujuanNavigasi({required this.label, required this.ikon, required this.ikonAktif});
+  const _TujuanNavigasi({
+    required this.label,
+    required this.ikon,
+    required this.ikonAktif,
+  });
   final String label;
   final IconData ikon;
   final IconData ikonAktif;
