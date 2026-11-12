@@ -1,3 +1,5 @@
+import 'dart:math' as math;
+
 import 'package:material_ui/material_ui.dart';
 
 import 'data.dart';
@@ -18,12 +20,20 @@ class HalamanDaftar extends StatelessWidget {
       ),
       body: LayoutBuilder(
         builder: (context, batas) {
-          // Batas 600 dp menjaga kartu tetap nyaman; 900 dp menambah kolom keempat.
+          // LayoutBuilder mengukur lebar konten setelah rail; kolom berganti sekitar 980 dp jendela.
           final jumlahKolom = switch (batas.maxWidth) {
             < 600 => 2,
             < 900 => 3,
             _ => 4,
           };
+          final lebarKartu =
+              (batas.maxWidth - 32 - (jumlahKolom - 1) * 14) / jumlahKolom;
+          final rasioKartu = batas.maxWidth < 600 ? 0.68 : 0.9;
+          final skalaTeks = MediaQuery.textScalerOf(context).scale(1);
+          final tinggiKartu = math.max(
+            lebarKartu / rasioKartu,
+            180 + 60 * skalaTeks,
+          );
           return CustomScrollView(
             slivers: [
               SliverToBoxAdapter(
@@ -54,11 +64,7 @@ class HalamanDaftar extends StatelessWidget {
                     crossAxisCount: jumlahKolom,
                     crossAxisSpacing: 14,
                     mainAxisSpacing: 14,
-                    mainAxisExtent:
-                        batas.maxWidth >= 600 && batas.maxWidth < 900
-                        ? 280
-                        : null,
-                    childAspectRatio: batas.maxWidth < 600 ? 0.68 : 0.9,
+                    mainAxisExtent: tinggiKartu,
                   ),
                   itemCount: daftarDestinasi.length,
                   itemBuilder: (context, indeks) => KartuDestinasi(

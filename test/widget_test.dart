@@ -25,10 +25,28 @@ void main() {
     expect(find.text('Destinasi tidak ditemukan'), findsOneWidget);
   });
 
-  for (final lebar in <double>[600, 640, 700, 720, 840, 900]) {
+  const lebarJendela = <double>[
+    320,
+    360,
+    400,
+    480,
+    599,
+    600,
+    700,
+    839,
+    840,
+    899,
+    900,
+    980,
+    1000,
+    1100,
+    1280,
+  ];
+
+  for (final lebar in lebarJendela) {
     for (final skalaTeks in <double>[1, 1.3]) {
       testWidgets(
-        'daftar dan detail tidak overflow pada lebar ${lebar.toInt()} dp dengan skala $skalaTeks',
+        'daftar dan detail tanpa overflow: ${lebar.toInt()} dp, skala $skalaTeks',
         (tester) async {
           tester.view.physicalSize = Size(lebar, 900);
           tester.view.devicePixelRatio = 1;
