@@ -4,9 +4,9 @@ Aplikasi Flutter multi-layar untuk menjelajahi destinasi wisata di Sumatera Utar
 
 ## Identitas
 
-- Nama: [Isi nama]
-- NIM: [Isi NIM]
-- Kelas: [Isi kelas]
+- Nama: Jhon Gabriel Simarmata
+- NIM: 4243550020
+- Kelas: PSIK 24C
 
 ## Tangkapan layar
 
@@ -42,3 +42,4 @@ AI digunakan sebagai alat bantu untuk menyusun struktur widget, data contoh dest
 flutter pub get
 flutter run
 ```
+

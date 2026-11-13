@@ -52,9 +52,9 @@ class HalamanTentang extends StatelessWidget {
                     children: [
                       Text('Pengembang', style: tema.textTheme.titleLarge),
                       const SizedBox(height: 8),
-                      const Text('Nama: [Isi nama]'),
-                      const Text('NIM: [Isi NIM]'),
-                      const Text('Kelas: [Isi kelas]'),
+                      const Text('Nama: Jhon Gabriel Simarmata'),
+                      const Text('NIM: 4243550020'),
+                      const Text('Kelas: PSIK 24C'),
                     ],
                   ),
                 ),
