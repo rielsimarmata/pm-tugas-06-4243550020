@@ -182,30 +182,51 @@ class DestinasiVisual extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    Widget gambarCadangan() => DecoratedBox(
+      decoration: BoxDecoration(
+        gradient: LinearGradient(
+          begin: Alignment.topLeft,
+          end: Alignment.bottomRight,
+          colors: [destinasi.warna, destinasi.warna.withValues(alpha: 0.55)],
+        ),
+      ),
+      child: Center(
+        child: Icon(
+          destinasi.ikon,
+          size: 76,
+          color: Colors.white.withValues(alpha: 0.9),
+        ),
+      ),
+    );
+
     return ClipRRect(
       borderRadius: radius,
       child: Stack(
         fit: StackFit.expand,
         children: [
-          DecoratedBox(
-            decoration: BoxDecoration(
-              gradient: LinearGradient(
-                begin: Alignment.topLeft,
-                end: Alignment.bottomRight,
-                colors: [
-                  destinasi.warna,
-                  destinasi.warna.withValues(alpha: 0.55),
-                ],
+          if (destinasi.gambar case final path?)
+            Image.asset(
+              path,
+              fit: BoxFit.cover,
+              semanticLabel: destinasi.nama,
+              errorBuilder: (context, error, stackTrace) => gambarCadangan(),
+            )
+          else
+            gambarCadangan(),
+          if (destinasi.gambar != null)
+            DecoratedBox(
+              decoration: BoxDecoration(
+                gradient: LinearGradient(
+                  begin: Alignment.topCenter,
+                  end: Alignment.bottomCenter,
+                  colors: [
+                    Colors.black.withValues(alpha: 0.18),
+                    Colors.transparent,
+                    Colors.black.withValues(alpha: 0.08),
+                  ],
+                ),
               ),
             ),
-            child: Center(
-              child: Icon(
-                destinasi.ikon,
-                size: 76,
-                color: Colors.white.withValues(alpha: 0.9),
-              ),
-            ),
-          ),
           Positioned(
             top: 12,
             left: 12,

@@ -1,6 +1,6 @@
 ﻿# Wisata Sumatera Utara
 
-Aplikasi Flutter multi-layar untuk menjelajahi destinasi wisata di Sumatera Utara. Tampilan menggunakan Material 3, ikon ilustratif tanpa gambar jaringan, dan navigasi dua bagian: Destinasi serta Tentang.
+Aplikasi Flutter multi-layar untuk menjelajahi destinasi wisata di Sumatera Utara. Tampilan menggunakan Material 3, foto dari aset lokal dengan ikon sebagai cadangan, dan navigasi dua bagian: Destinasi serta Tentang.
 
 ## Identitas
 
@@ -16,6 +16,17 @@ Ganti placeholder berikut dengan gambar hasil aplikasi:
 2. Detail destinasi di ponsel: `![Detail destinasi - ponsel](screenshots/detail-ponsel.png)`
 3. Daftar destinasi di tablet: `![Daftar destinasi - tablet](screenshots/daftar-tablet.png)`
 4. Detail destinasi di tablet: `![Detail destinasi - tablet](screenshots/detail-tablet.png)`
+
+## Kredit foto
+
+| Destinasi | Sumber | Pembuat | Lisensi |
+|---|---|---|---|
+| Danau Toba | [Isi sumber] | [Isi pembuat] | [Isi lisensi] |
+| Bukit Lawang | [Isi sumber] | [Isi pembuat] | [Isi lisensi] |
+| Berastagi | [Isi sumber] | [Isi pembuat] | [Isi lisensi] |
+| Istana Maimun | [Isi sumber] | [Isi pembuat] | [Isi lisensi] |
+| Air Terjun Sipiso-piso | [Isi sumber] | [Isi pembuat] | [Isi lisensi] |
+| Pantai Pandan | [Isi sumber] | [Isi pembuat] | [Isi lisensi] |
 
 ## Keputusan desain responsif
 

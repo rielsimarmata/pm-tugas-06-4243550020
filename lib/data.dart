@@ -9,6 +9,7 @@ class Destinasi {
     required this.kategori,
     required this.deskripsi,
     required this.hargaTiket,
+    this.gambar,
     required this.ikon,
     required this.warna,
   });
@@ -19,6 +20,7 @@ class Destinasi {
   final String kategori;
   final String deskripsi;
   final int? hargaTiket;
+  final String? gambar;
   final IconData ikon;
   final Color warna;
 }
@@ -31,6 +33,7 @@ const daftarDestinasi = <Destinasi>[
     kategori: 'Alam',
     deskripsi: 'Danau vulkanik terbesar di Indonesia dengan Pulau Samosir di tengahnya. Nikmati panorama perbukitan, budaya Batak, dan udara sejuk di tepi danau.',
     hargaTiket: null,
+    gambar: 'assets/images/danau-toba.jpg',
     ikon: Icons.water,
     warna: Color(0xFF1976D2),
   ),
@@ -41,6 +44,7 @@ const daftarDestinasi = <Destinasi>[
     kategori: 'Ekowisata',
     deskripsi: 'Pintu masuk menuju Taman Nasional Gunung Leuser yang dikenal sebagai habitat orangutan Sumatera. Pengunjung dapat menikmati sungai dan hutan tropis.',
     hargaTiket: 5000,
+    gambar: 'assets/images/bukit-lawang.jpg',
     ikon: Icons.forest,
     warna: Color(0xFF388E3C),
   ),
@@ -51,6 +55,7 @@ const daftarDestinasi = <Destinasi>[
     kategori: 'Pegunungan',
     deskripsi: 'Kota dataran tinggi yang sejuk dengan pemandangan Gunung Sinabung dan Sibayak, pasar buah, serta kebun bunga yang menarik untuk dikunjungi.',
     hargaTiket: null,
+    gambar: 'assets/images/berastagi.jpeg',
     ikon: Icons.landscape,
     warna: Color(0xFF8D6E63),
   ),
@@ -61,6 +66,7 @@ const daftarDestinasi = <Destinasi>[
     kategori: 'Sejarah',
     deskripsi: 'Istana Kesultanan Deli yang dibangun pada abad ke-19. Arsitekturnya memadukan unsur Melayu, Islam, India, dan Eropa.',
     hargaTiket: 10000,
+    gambar: 'assets/images/istana-maimun.jpg',
     ikon: Icons.account_balance,
     warna: Color(0xFFF9A825),
   ),
@@ -71,6 +77,7 @@ const daftarDestinasi = <Destinasi>[
     kategori: 'Air Terjun',
     deskripsi: 'Air terjun setinggi sekitar 120 meter yang jatuh dari dataran tinggi ke lembah dekat Danau Toba. Area pandangnya menawarkan panorama alam yang luas.',
     hargaTiket: 7500,
+    gambar: 'assets/images/air-terjun-sipiso-piso.jpg',
     ikon: Icons.water_drop,
     warna: Color(0xFF00897B),
   ),
@@ -81,6 +88,7 @@ const daftarDestinasi = <Destinasi>[
     kategori: 'Pantai',
     deskripsi: 'Pantai populer di Sibolga dengan pasir cerah dan air laut yang tenang. Cocok untuk bersantai dan menikmati pemandangan pesisir barat Sumatera Utara.',
     hargaTiket: 5000,
+    gambar: 'assets/images/pantai-pandan.jpg',
     ikon: Icons.beach_access,
     warna: Color(0xFF00ACC1),
   ),
