@@ -10,12 +10,17 @@ Aplikasi Flutter multi-layar untuk menjelajahi destinasi wisata di Sumatera Utar
 
 ## Tangkapan layar
 
-Ganti placeholder berikut dengan gambar hasil aplikasi:
+### Ponsel (390 x 844 dp)
 
-1. Daftar destinasi di ponsel: `![Daftar destinasi - ponsel](screenshots/daftar-ponsel.png)`
-2. Detail destinasi di ponsel: `![Detail destinasi - ponsel](screenshots/detail-ponsel.png)`
-3. Daftar destinasi di tablet: `![Daftar destinasi - tablet](screenshots/daftar-tablet.png)`
-4. Detail destinasi di tablet: `![Detail destinasi - tablet](screenshots/detail-tablet.png)`
+![Daftar destinasi - ponsel](screenshots/daftar-ponsel.png)
+
+![Detail destinasi - ponsel](screenshots/detail-ponsel.png)
+
+### Tablet (1280 x 800 dp)
+
+![Daftar destinasi - tablet](screenshots/daftar-tablet.png)
+
+![Detail destinasi - tablet](screenshots/detail-tablet.png)
 
 ## Keputusan desain responsif
 
@@ -23,7 +28,7 @@ Tampilan daftar memakai `LayoutBuilder` untuk menentukan jumlah kolom berdasarka
 
 ## Pernyataan penggunaan AI
 
-AI digunakan sebagai alat bantu untuk menyusun struktur widget, data contoh destinasi, dokumentasi, dan pengujian. Kode dan hasilnya ditinjau serta diverifikasi kembali dengan `flutter analyze` dan `flutter test`.
+AI digunakan sebagai alat bantu dalam penyusunan widget, data contoh destinasi, dokumentasi, dan pengujian. Seluruh kode ditinjau dan diperiksa kembali menggunakan `flutter analyze` dan `flutter test`.
 
 ## Menjalankan aplikasi
 
