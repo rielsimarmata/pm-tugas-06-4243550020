@@ -30,10 +30,10 @@ class HalamanDaftar extends StatelessWidget {
               (batas.maxWidth - 32 - (jumlahKolom - 1) * 14) / jumlahKolom;
           final rasioKartu = batas.maxWidth < 600 ? 0.68 : 0.9;
           final skalaTeks = MediaQuery.textScalerOf(context).scale(1);
-          final tinggiKartu = math.max(
-            lebarKartu / rasioKartu,
-            180 + 60 * skalaTeks,
-          );
+          final tinggiMinimum = skalaTeks == 1.0 && jumlahKolom >= 3
+              ? 170 + 60 * skalaTeks
+              : 180 + 60 * skalaTeks;
+          final tinggiKartu = math.max(lebarKartu / rasioKartu, tinggiMinimum);
           return CustomScrollView(
             slivers: [
               SliverToBoxAdapter(

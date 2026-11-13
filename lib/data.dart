@@ -71,7 +71,7 @@ const daftarDestinasi = <Destinasi>[
     kategori: 'Air Terjun',
     deskripsi: 'Air terjun setinggi sekitar 120 meter yang jatuh dari dataran tinggi ke lembah dekat Danau Toba. Area pandangnya menawarkan panorama alam yang luas.',
     hargaTiket: 7500,
-    ikon: Icons.waterfall_chart,
+    ikon: Icons.water_drop,
     warna: Color(0xFF00897B),
   ),
   Destinasi(
