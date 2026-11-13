@@ -17,17 +17,6 @@ Ganti placeholder berikut dengan gambar hasil aplikasi:
 3. Daftar destinasi di tablet: `![Daftar destinasi - tablet](screenshots/daftar-tablet.png)`
 4. Detail destinasi di tablet: `![Detail destinasi - tablet](screenshots/detail-tablet.png)`
 
-## Kredit foto
-
-| Destinasi | Sumber | Pembuat | Lisensi |
-|---|---|---|---|
-| Danau Toba | [Isi sumber] | [Isi pembuat] | [Isi lisensi] |
-| Bukit Lawang | [Isi sumber] | [Isi pembuat] | [Isi lisensi] |
-| Berastagi | [Isi sumber] | [Isi pembuat] | [Isi lisensi] |
-| Istana Maimun | [Isi sumber] | [Isi pembuat] | [Isi lisensi] |
-| Air Terjun Sipiso-piso | [Isi sumber] | [Isi pembuat] | [Isi lisensi] |
-| Pantai Pandan | [Isi sumber] | [Isi pembuat] | [Isi lisensi] |
-
 ## Keputusan desain responsif
 
 Tampilan daftar memakai `LayoutBuilder` untuk menentukan jumlah kolom berdasarkan lebar ruang yang benar-benar tersedia. Pada lebar di bawah 600 dp, kartu disusun dalam dua kolom agar tetap nyaman disentuh pada ponsel. Lebar 600 sampai kurang dari 900 dp menggunakan tiga kolom, sementara ruang 900 dp atau lebih memakai empat kolom. Halaman detail memiliki keputusan lokal pada 700 dp: di bawah batas itu visual dan informasi tersusun vertikal agar alur baca tetap alami; mulai 700 dp keduanya ditampilkan berdampingan, dengan informasi yang dapat digulir sendiri. Kerangka aplikasi menggunakan `MediaQuery.sizeOf(context)` untuk keputusan tingkat aplikasi pada 840 dp. Di bawahnya navigasi berada di bagian bawah, sesuai pola ponsel dan tablet sempit. Mulai 840 dp, navigasi berpindah ke rail di sisi layar sehingga area konten utama tetap luas. `LayoutBuilder` cocok untuk grid dan detail karena komponennya perlu merespons batas lokal, termasuk saat berada di dalam panel. `MediaQuery` dipakai pada kerangka karena pemilihan navigasi mengikuti ukuran keseluruhan jendela. Teks nama dan lokasi dibatasi baris serta memakai ellipsis, sedangkan deskripsi panjang dapat digulir agar tidak meluap.
